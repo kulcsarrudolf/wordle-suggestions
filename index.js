@@ -1,6 +1,6 @@
 import { getAllNLetterWords } from "./wordGenerator.js";
 
-const x = getAllNLetterWords(4);
+const x = getAllNLetterWords(5);
 
 x.forEach((word) => {
     console.log(word);
