@@ -10,7 +10,6 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "check-word": "^1.1.0",
-        "combinations": "^1.0.0"
+        "wordlist-english": "^1.2.1"
     }
 }

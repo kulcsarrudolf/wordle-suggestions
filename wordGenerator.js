@@ -1,8 +1,7 @@
-import checkWord from "check-word";
+import wordlist from "wordlist-english";
 
 export const getAllNLetterWords = (numberOfLetters) => {
-    const isEnglishWord = checkWord("en");
-    const allNLetterWords = [];
+    var englishWords = wordlist["english"];
 
-    return allNLetterWords;
+    return englishWords.filter((word) => word.length === numberOfLetters);
 };
