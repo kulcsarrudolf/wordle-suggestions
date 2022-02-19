@@ -15,25 +15,16 @@ export const getWordleSuggestions = (
     placedLetters
 ) => {
     const fiveLetterWords = getAllNLetterWords(5);
+    const placedLettersMap = new Map(placedLetters);
 
     const suggestions = fiveLetterWords.filter((word) =>
-        isTheWordStillAccepted(
-            word,
-            goodLetters,
-            badLetters,
-            new Map(placedLetters)
-        )
+        isTheWordStillInGame(word, goodLetters, badLetters, placedLettersMap)
     );
 
     return suggestions;
 };
 
-const isTheWordStillAccepted = (
-    word,
-    goodLetters,
-    badLetters,
-    placedLetters
-) => {
+const isTheWordStillInGame = (word, goodLetters, badLetters, placedLetters) => {
     let result = true;
     word = word.toUpperCase();
 
@@ -50,13 +41,7 @@ const isTheWordStillAccepted = (
     });
 
     Array.from(placedLetters.keys()).forEach((letter) => {
-        if (
-            !isTheGivenLetterOnThePosition(
-                word,
-                letter,
-                placedLetters.get(letter)
-            )
-        ) {
+        if (!isTheLetterOnThePositon(word, letter, placedLetters.get(letter))) {
             result = false;
         }
     });
@@ -64,6 +49,6 @@ const isTheWordStillAccepted = (
     return result;
 };
 
-const isTheGivenLetterOnThePosition = (word, letter, position) => {
+const isTheLetterOnThePositon = (word, letter, position) => {
     return word.toUpperCase().charAt(position - 1) === letter;
 };

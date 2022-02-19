@@ -1,4 +1,4 @@
-import { getWordleSuggestions } from "./wordle.js";
+import { getWordleSuggestions } from "./wordle-suggestions.js";
 
 const suggestions = getWordleSuggestions(
     ["E", "A", "R", "B", "E"],
