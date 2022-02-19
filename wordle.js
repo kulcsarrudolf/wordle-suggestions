@@ -1,8 +1,34 @@
-const isTheGivenLetterOnThePosition = (word, letter, position) => {
-    return word.toUpperCase().charAt(position - 1) === letter;
+import { getAllNLetterWords } from "./words.js";
+
+/**
+ * Get Wordle Suggestions
+ *
+ * @param {*} goodLetters - array with good letters (e.g. ["A","C"])
+ * @param {*} badLetters - array with bad letters (e.g. ["E", "A", "E"])
+ * @param {*} placedLetters - (e.g. [["B",1], ["E", 5]])
+ *
+ * @returns a list of suggested words
+ */
+export const getWordleSuggestions = (
+    goodLetters,
+    badLetters,
+    placedLetters
+) => {
+    const fiveLetterWords = getAllNLetterWords(5);
+
+    const suggestions = fiveLetterWords.filter((word) =>
+        isTheWordStillAccepted(
+            word,
+            goodLetters,
+            badLetters,
+            new Map(placedLetters)
+        )
+    );
+
+    return suggestions;
 };
 
-export const isTheWordStillAccepted = (
+const isTheWordStillAccepted = (
     word,
     goodLetters,
     badLetters,
@@ -36,4 +62,8 @@ export const isTheWordStillAccepted = (
     });
 
     return result;
+};
+
+const isTheGivenLetterOnThePosition = (word, letter, position) => {
+    return word.toUpperCase().charAt(position - 1) === letter;
 };
