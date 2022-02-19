@@ -4,31 +4,31 @@ const isTheGivenLetterOnThePosition = (word, letter, position) => {
 
 export const isTheWordStillAccepted = (
     word,
-    includedCharacters,
-    excludedCharacters,
-    charactersWithSpecificPozitions
+    goodLetters,
+    badLetters,
+    placedLetters
 ) => {
     let result = true;
     word = word.toUpperCase();
 
-    includedCharacters.forEach((character) => {
-        if (!word.includes(character)) {
+    goodLetters.forEach((letter) => {
+        if (!word.includes(letter)) {
             result = false;
         }
     });
 
-    excludedCharacters.forEach((character) => {
-        if (word.includes(character)) {
+    badLetters.forEach((letter) => {
+        if (word.includes(letter)) {
             result = false;
         }
     });
 
-    Array.from(charactersWithSpecificPozitions.keys()).forEach((character) => {
+    Array.from(placedLetters.keys()).forEach((letter) => {
         if (
             !isTheGivenLetterOnThePosition(
                 word,
-                character,
-                charactersWithSpecificPozitions.get(character)
+                letter,
+                placedLetters.get(letter)
             )
         ) {
             result = false;
