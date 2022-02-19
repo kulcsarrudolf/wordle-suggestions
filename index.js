@@ -3,26 +3,14 @@ import { getAllNLetterWords } from "./words.js";
 
 const fiveLetterWords = getAllNLetterWords(5);
 
-const theCharactersWhichAreAccepted = ["A", "I", "T"];
-const theCharactersWhichAreNotAccepted = [
-    "H",
-    "E",
-    "R",
-    "V",
-    "U",
-    "L",
-    "P",
-    "N",
-    "W",
-    "S",
-    "D",
-    "V",
-];
+const theCharactersWhichAreAccepted = ["E", "A", "R", "B", "E"];
+const theCharactersWhichAreNotAccepted = ["D", "L", "T", "Y", "S", "V"];
 
 const lettersWithExactPozitions = new Map([
-    ["A", 2],
-    ["I", 4],
-    ["T", 5],
+    ["B", 1],
+    ["R", 2],
+    ["A", 3],
+    ["E", 5],
 ]);
 
 const wordsInGame = fiveLetterWords.filter((word) =>
