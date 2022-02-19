@@ -1,4 +1,4 @@
-import { getAllNLetterWords } from "./wordGenerator.js";
+import { getAllNLetterWords } from "./words.js";
 
 const fiveLetterWords = getAllNLetterWords(5);
 
