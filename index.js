@@ -25,15 +25,15 @@ const lettersWithExactPozitions = new Map([
     ["T", 5],
 ]);
 
-fiveLetterWords.forEach((word) => {
-    if (
-        isTheWordStillAccepted(
-            word,
-            theCharactersWhichAreAccepted,
-            theCharactersWhichAreNotAccepted,
-            lettersWithExactPozitions
-        )
-    ) {
-        console.log(word);
-    }
+const wordsInGame = fiveLetterWords.filter((word) =>
+    isTheWordStillAccepted(
+        word,
+        theCharactersWhichAreAccepted,
+        theCharactersWhichAreNotAccepted,
+        lettersWithExactPozitions
+    )
+);
+
+wordsInGame.forEach((word) => {
+    console.log(word);
 });
