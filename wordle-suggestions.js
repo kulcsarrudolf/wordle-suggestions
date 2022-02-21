@@ -17,11 +17,9 @@ export const getWordleSuggestions = (
     const fiveLetterWords = getAllNLetterWords(5);
     const placedLettersMap = new Map(placedLetters);
 
-    const suggestions = fiveLetterWords.filter((word) =>
+    return fiveLetterWords.filter((word) =>
         isTheWordStillInGame(word, goodLetters, badLetters, placedLettersMap)
     );
-
-    return suggestions;
 };
 
 const isTheWordStillInGame = (word, goodLetters, badLetters, placedLetters) => {
