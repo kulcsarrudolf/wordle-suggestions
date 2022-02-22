@@ -12,17 +12,31 @@ import { getAllNLetterWords } from "./words.js";
 export const getWordleSuggestions = (
     goodLetters,
     badLetters,
-    placedLetters
+    placedLetters,
+    yellowLetters
 ) => {
     const fiveLetterWords = getAllNLetterWords(5);
     const placedLettersMap = new Map(placedLetters);
+    const yellowLettersMaps = new Map(yellowLetters);
 
     return fiveLetterWords.filter((word) =>
-        isTheWordStillInGame(word, goodLetters, badLetters, placedLettersMap)
+        isTheWordStillInGame(
+            word,
+            goodLetters,
+            badLetters,
+            placedLettersMap,
+            yellowLettersMaps
+        )
     );
 };
 
-const isTheWordStillInGame = (word, goodLetters, badLetters, placedLetters) => {
+const isTheWordStillInGame = (
+    word,
+    goodLetters,
+    badLetters,
+    placedLetters,
+    yellowLetters
+) => {
     let result = true;
     word = word.toUpperCase();
 
@@ -40,6 +54,12 @@ const isTheWordStillInGame = (word, goodLetters, badLetters, placedLetters) => {
 
     Array.from(placedLetters.keys()).forEach((letter) => {
         if (!isTheLetterOnThePositon(word, letter, placedLetters.get(letter))) {
+            result = false;
+        }
+    });
+
+    Array.from(yellowLetters.keys()).forEach((letter) => {
+        if (isTheLetterOnThePositon(word, letter, yellowLetters.get(letter))) {
             result = false;
         }
     });
