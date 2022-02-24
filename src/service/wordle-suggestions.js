@@ -1,4 +1,4 @@
-import { getAllNLetterWords } from './words.js';
+import { getAllNLetterWords } from './words';
 
 /**
  * Get Wordle Suggestions
@@ -15,13 +15,18 @@ export const getWordleSuggestions = (goodLetters, badLetters, placedLetters, yel
   const yellowLettersMaps = new Map(yellowLetters);
 
   return fiveLetterWords.filter((word) =>
-    isTheWordStillInGame(word, goodLetters, badLetters, placedLettersMap, yellowLettersMaps)
+    isTheWordStillInGame(
+      word.toUpperCase(),
+      goodLetters,
+      badLetters,
+      placedLettersMap,
+      yellowLettersMaps
+    )
   );
 };
 
 const isTheWordStillInGame = (word, goodLetters, badLetters, placedLetters, yellowLetters) => {
   let result = true;
-  word = word.toUpperCase();
 
   goodLetters.forEach((letter) => {
     if (!word.includes(letter)) {
@@ -58,6 +63,5 @@ export const areTheYellowLettersExcludesTheWord = (word, yellowLetters) => {
   );
 };
 
-const isTheLetterOnThePositon = (word, letter, position) => {
-  return word.toUpperCase().charAt(position - 1) === letter;
-};
+const isTheLetterOnThePositon = (word, letter, position) =>
+  word.toUpperCase().charAt(position - 1) === letter;
