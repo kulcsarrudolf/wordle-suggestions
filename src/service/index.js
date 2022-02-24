@@ -1,15 +1,17 @@
 import { getWordleSuggestions } from "./wordle-suggestions.js";
 
 const suggestions = getWordleSuggestions(
-    ["O", "R", "N"],
-    ["A", "U", "D", "I", "S", "M", "K", "E", "W", "G"],
-    [["O", 3]],
+    ["K", "E"],
+    ["C", "A", "N", "D", "Y", "H", "I", "R"],
+    [],
     [
-        ["R", 2],
-        ["N", 3],
+        ["K", 3],
+        ["E", 4],
     ]
 );
 
 suggestions.forEach((word) => {
     console.log(word);
 });
+
+console.log(suggestions.length);
