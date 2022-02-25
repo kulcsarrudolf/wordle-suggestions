@@ -6,6 +6,7 @@ import { getAllNLetterWords } from './words';
  * @param {*} goodLetters - array with good letters (e.g. ["A","C"])
  * @param {*} badLetters - array with bad letters (e.g. ["E", "A", "E"])
  * @param {*} placedLetters - (e.g. [["B",1], ["E", 5]])
+ * @param {*} yellowLetters - (e.g. [["B",1], ["E", 5]])
  *
  * @returns a list of suggested words
  */

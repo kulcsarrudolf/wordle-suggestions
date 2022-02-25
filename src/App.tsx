@@ -1,8 +1,15 @@
 import React from 'react';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core';
+import { ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
-const theme = createMuiTheme();
+import Main from './components/Main';
 
-const App = () => <ThemeProvider theme={theme}>Wordle Suggestions</ThemeProvider>;
+const theme = createTheme();
+
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <Main />
+  </ThemeProvider>
+);
 
 export default App;
