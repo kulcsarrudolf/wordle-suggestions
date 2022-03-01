@@ -92,7 +92,7 @@ const Main = () => {
                   console.log(key);
                   console.log(e.target.value);
                   const placedLettersCopy = placedLetters;
-                  placedLettersCopy.set(key, e.target.value);
+                  placedLettersCopy.set(key, e.target.value.toUpperCase());
 
                   console.log(placedLettersCopy);
                   setPlacedLetters(new Map(placedLettersCopy));
