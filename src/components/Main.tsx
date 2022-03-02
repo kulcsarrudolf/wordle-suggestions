@@ -30,10 +30,6 @@ const Main = () => {
   };
 
   useEffect(() => {
-    console.log(getARandomWordForStart());
-  }, []);
-
-  useEffect(() => {
     const a: Array<any> = [];
 
     if (placedLetters.get('FIRST_LETTER') !== '') {
@@ -106,46 +102,54 @@ const Main = () => {
           ))}
         </Grid>
 
-        <Grid item>
-          <Button
-            variant="contained"
-            onClick={() => {
-              setRandomSuggestion(getARandomWordForStart());
-            }}
-          >
-            Get a suggestion
-          </Button>
-        </Grid>
+        {goodLetters.length === 0 && badLetters.length === 0 && (
+          <>
+            <Grid item>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setRandomSuggestion(getARandomWordForStart());
+                }}
+              >
+                Get a suggestion
+              </Button>
+            </Grid>
 
-        <Grid item>
-          <Typography>Suggestion: {randomSuggestion}</Typography>
-        </Grid>
-
-        <Grid item>
-          <Typography>{`Results found: ${suggestions.length}`}</Typography>
-        </Grid>
-
-        {suggestions.length >= 1000 && (
-          <Grid item>
-            <Alert severity="warning">
-              The suggestions are only displayed when the number of filtered words is less than
-              1000.
-            </Alert>
-          </Grid>
+            <Grid item>
+              <Typography>Suggestion: {randomSuggestion}</Typography>
+            </Grid>
+          </>
         )}
 
-        {suggestions.length < 1000 && (
-          <Grid item>
-            {suggestions.map((word) => (
-              <Chip
-                variant="outlined"
-                color="primary"
-                size="small"
-                label={word}
-                style={{ margin: '0.25rem' }}
-              />
-            ))}
-          </Grid>
+        {(goodLetters.length > 0 || badLetters.length > 0) && (
+          <>
+            <Grid item>
+              <Typography>{`Results found: ${suggestions.length}`}</Typography>
+            </Grid>
+            <>
+              {suggestions.length >= 1000 && (
+                <Grid item>
+                  <Alert severity="warning">
+                    The suggestions are only displayed when the number of filtered words is less
+                    than 1000.
+                  </Alert>
+                </Grid>
+              )}
+            </>
+            {suggestions.length < 1000 && (
+              <Grid item>
+                {suggestions.map((word) => (
+                  <Chip
+                    variant="outlined"
+                    color="primary"
+                    size="small"
+                    label={word}
+                    style={{ margin: '0.25rem' }}
+                  />
+                ))}
+              </Grid>
+            )}
+          </>
         )}
       </Grid>
     </>
