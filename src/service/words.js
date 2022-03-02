@@ -6,6 +6,14 @@ export const getAllNLetterWords = (numberOfLetters) => {
   return [];
 };
 
+export const getARandomWordForStart = () => {
+  const items = FIVE_LETTER_WORDS.filter(
+    (word) => Array.from(new Set(Array.from(word))).length === word.length
+  );
+
+  return items[Math.floor(Math.random() * items.length)];
+};
+
 const FIVE_LETTER_WORDS = [
   'aalii',
   'abaca',

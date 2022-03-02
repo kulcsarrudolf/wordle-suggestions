@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { TextField, Grid, Chip, Stack, Typography, Alert } from '@mui/material';
+import { TextField, Grid, Chip, Typography, Alert, Button } from '@mui/material';
 
 import { getWordleSuggestions } from '../service/wordle-suggestions';
+import { getARandomWordForStart } from '../service/words';
 
 const Main = () => {
   const [goodLetters, setGoodLetters] = useState<Array<string>>([]);
@@ -20,11 +21,17 @@ const Main = () => {
 
   const [suggestions, setSuggestions] = useState<Array<string>>([]);
 
+  const [randomSuggestion, setRandomSuggestion] = useState<String>(getARandomWordForStart());
+
   const lettersToArray = (lettersString: string) => {
     let x = Array.from(lettersString);
     x = x.map((letter) => letter.toUpperCase());
     return [...new Set(x)];
   };
+
+  useEffect(() => {
+    console.log(getARandomWordForStart());
+  }, []);
 
   useEffect(() => {
     const a: Array<any> = [];
@@ -50,9 +57,6 @@ const Main = () => {
     }
 
     setSuggestions(getWordleSuggestions(goodLetters, badLetters, a, []));
-
-    // setSuggestions(getWordleSuggestions([], [], [], []));
-    console.log(placedLetters);
   }, [goodLetters, badLetters, placedLetters]);
 
   return (
@@ -81,6 +85,10 @@ const Main = () => {
         </Grid>
 
         <Grid item>
+          <Typography>Placed Letters</Typography>
+        </Grid>
+
+        <Grid item>
           {Array.from(placedLetters.keys()).map((key: any) => (
             <>
               <TextField
@@ -89,17 +97,28 @@ const Main = () => {
                 inputProps={{ min: 0, style: { textAlign: 'center', textTransform: 'uppercase' } }}
                 style={{ width: '5rem', margin: '0.25rem' }}
                 onChange={(e) => {
-                  console.log(key);
-                  console.log(e.target.value);
                   const placedLettersCopy = placedLetters;
                   placedLettersCopy.set(key, e.target.value.toUpperCase());
-
-                  console.log(placedLettersCopy);
                   setPlacedLetters(new Map(placedLettersCopy));
                 }}
               />
             </>
           ))}
+        </Grid>
+
+        <Grid item>
+          <Button
+            variant="contained"
+            onClick={() => {
+              setRandomSuggestion(getARandomWordForStart());
+            }}
+          >
+            Get a suggestion
+          </Button>
+        </Grid>
+
+        <Grid item>
+          <Typography>Suggestion: {randomSuggestion}</Typography>
         </Grid>
 
         <Grid item>
@@ -109,7 +128,8 @@ const Main = () => {
         {suggestions.length >= 1000 && (
           <Grid item>
             <Alert severity="warning">
-              The result is only displayed when the number of filtered words is less than 1000.
+              The suggestions are only displayed when the number of filtered words is less than
+              1000.
             </Alert>
           </Grid>
         )}
