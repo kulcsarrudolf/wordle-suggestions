@@ -90,8 +90,11 @@ const Main = () => {
               <TextField
                 variant="outlined"
                 value={placedLetters.get(key)}
-                inputProps={{ min: 0, style: { textAlign: 'center', textTransform: 'uppercase' } }}
-                style={{ width: '5rem', margin: '0.25rem' }}
+                inputProps={{
+                  min: 0,
+                  style: { textAlign: 'center', textTransform: 'uppercase', padding: '0.45rem' },
+                }}
+                style={{ maxWidth: '3rem', margin: '0.25rem', padding: '0.15rem' }}
                 onChange={(e) => {
                   const placedLettersCopy = placedLetters;
                   placedLettersCopy.set(key, e.target.value.toUpperCase());
