@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { TextField, Grid, Chip, Typography, Alert, Button } from '@mui/material';
+import { TextField, Grid, Typography, Button } from '@mui/material';
+
+import Suggestions from './Suggestions';
 
 import { getWordleSuggestions } from '../service/wordle-suggestions';
 import { getARandomWordForStart } from '../service/words';
@@ -125,34 +127,7 @@ const Main = () => {
         )}
 
         {(goodLetters.length > 0 || badLetters.length > 0) && (
-          <>
-            <Grid item>
-              <Typography>{`Results found: ${suggestions.length}`}</Typography>
-            </Grid>
-            <>
-              {suggestions.length >= 1000 && (
-                <Grid item>
-                  <Alert severity="warning">
-                    The suggestions are only displayed when the number of filtered words is less
-                    than 1000.
-                  </Alert>
-                </Grid>
-              )}
-            </>
-            {suggestions.length < 1000 && (
-              <Grid item>
-                {suggestions.map((word) => (
-                  <Chip
-                    variant="outlined"
-                    color="primary"
-                    size="small"
-                    label={word}
-                    style={{ margin: '0.25rem' }}
-                  />
-                ))}
-              </Grid>
-            )}
-          </>
+          <Suggestions suggestions={suggestions} />
         )}
       </Grid>
     </>
