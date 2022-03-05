@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { TextField, Grid, Typography, Button } from '@mui/material';
+import { TextField, Grid, Typography } from '@mui/material';
 
 import Suggestions from './Suggestions';
 
 import { getWordleSuggestions } from '../service/wordle-suggestions';
-import { getARandomWordForStart } from '../service/words';
 
 const Main = () => {
   const [goodLetters, setGoodLetters] = useState<Array<string>>([]);
@@ -22,8 +21,6 @@ const Main = () => {
   const [yellowLetters, setYellowLetters] = useState([]);
 
   const [suggestions, setSuggestions] = useState<Array<string>>([]);
-
-  const [randomSuggestion, setRandomSuggestion] = useState<String>(getARandomWordForStart());
 
   const lettersToArray = (lettersString: string) => {
     let x = Array.from(lettersString);
@@ -107,28 +104,10 @@ const Main = () => {
           ))}
         </Grid>
 
-        {goodLetters.length === 0 && badLetters.length === 0 && (
-          <>
-            <Grid item>
-              <Button
-                variant="contained"
-                onClick={() => {
-                  setRandomSuggestion(getARandomWordForStart());
-                }}
-              >
-                Get a suggestion
-              </Button>
-            </Grid>
-
-            <Grid item>
-              <Typography>Suggestion: {randomSuggestion}</Typography>
-            </Grid>
-          </>
-        )}
-
-        {(goodLetters.length > 0 || badLetters.length > 0) && (
-          <Suggestions suggestions={suggestions} />
-        )}
+        <Suggestions
+          suggestions={suggestions}
+          isDisplayed={goodLetters.length > 0 || badLetters.length > 0}
+        />
       </Grid>
     </>
   );
