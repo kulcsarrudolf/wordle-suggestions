@@ -1,4 +1,7 @@
 import { Grid, Chip, Typography, Alert } from '@mui/material';
+
+import { v4 as getKey } from 'uuid';
+
 import AdvancedSuggestion from './AdvancedSuggestion';
 
 type SuggestionsProps = {
@@ -37,6 +40,7 @@ const Suggestions: React.FC<SuggestionsProps> = ({
         <Grid item>
           {suggestions.map((word) => (
             <Chip
+              key={getKey()}
               variant="filled"
               color="primary"
               size="medium"
