@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Alert, Grid, Typography } from '@mui/material';
 
+import Warning from './Warning';
 import Letters from './Letters';
 import PlacedLetters from './PlacedLetters';
 import Suggestions from './Suggestions';
@@ -11,7 +12,6 @@ const Main = () => {
   const [goodLetters, setGoodLetters] = useState<Array<string>>([]);
   const [badLetters, setBadLetters] = useState<Array<string>>([]);
   const [placedLetters, setPlacedLetters] = useState<any>([]);
-  const [yellowLetters, setYellowLetters] = useState<Array<any>>([]);
 
   const [suggestions, setSuggestions] = useState<Array<string>>([]);
 
@@ -22,8 +22,24 @@ const Main = () => {
   return (
     <>
       <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
+        <Warning />
         <Grid item>
           <Typography variant="h4">WORDLE SUGGESTIONS</Typography>
+        </Grid>
+
+        <Grid item>
+          <Alert severity="info">
+            You can test this app here:{' '}
+            <a
+              rel="noopener noreferrer"
+              href="https://www.devangthakkar.com/wordle_archive/"
+              target="_blank"
+              style={{ textDecoration: 'none', fontWeight: 'bold' }}
+            >
+              Wordle Archive
+            </a>
+            .
+          </Alert>
         </Grid>
 
         <Letters title="Good Letters" letters={goodLetters} setLetters={setGoodLetters} />
