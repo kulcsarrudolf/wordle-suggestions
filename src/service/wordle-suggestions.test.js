@@ -4,16 +4,18 @@ test('test1', () => {
   console.log(areTheYellowLettersExcludesTheWord('test', new Map([['E', 1]])));
 });
 
-test('test2', () => {
+test('Placed Letters Test - When a letter is repeating', () => {
   const suggestions = getWordleSuggestions(
-    ['K', 'E'],
-    ['C', 'A', 'N', 'D', 'Y', 'H', 'I', 'R'],
-    [],
+    ['S'],
+    ['O', 'U', 'N', 'D', 'C', 'A', 'B', 'T', 'E', 'R'],
     [
-      ['K', 3],
-      ['E', 4],
-    ]
+      ['S', 1],
+      ['S', 3],
+      ['S', 4],
+    ],
+    []
   );
 
-  console.log(suggestions);
+  expect(suggestions.length).toBe(1);
+  expect(suggestions[0]).toBe('sissy');
 });
