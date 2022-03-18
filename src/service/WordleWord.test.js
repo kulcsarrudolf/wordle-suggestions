@@ -6,16 +6,24 @@ const PLACED_LETTERS_TEST_MAP = new Map([
   [4, 'S'],
 ]);
 
-test('Placed Letter Test - When the word does contain all the placed letters', () => {
-  const currentWord = new WordleWord('sissy');
+describe('Placed Letter Tests', () => {
+  const testWords = [new WordleWord('missy'), new WordleWord('whisk')];
 
-  expect(currentWord.doesContainAllThePlacedLetters(PLACED_LETTERS_TEST_MAP)).toBe(true);
-});
+  test('When the word does contain all the placed letters', () => {
+    const testWord = new WordleWord('sissy');
 
-test('Placed Letter Test - When the word does not contain all the placed letters', () => {
-  const currentWords = [new WordleWord('missy'), new WordleWord('whisk')];
+    expect(testWord.doesContainAllThePlacedLetters(PLACED_LETTERS_TEST_MAP)).toBe(true);
+  });
 
-  currentWords.forEach((currentWord) => {
-    expect(currentWord.doesContainAllThePlacedLetters(PLACED_LETTERS_TEST_MAP)).toBe(false);
+  test('When the word does not contain all the placed letters', () => {
+    testWords.forEach((currentWord) => {
+      expect(currentWord.doesContainAllThePlacedLetters(PLACED_LETTERS_TEST_MAP)).toBe(false);
+    });
+  });
+
+  test('When the placed letters map is empty', () => {
+    testWords.forEach((currentWord) => {
+      expect(currentWord.doesContainAllThePlacedLetters([])).toBe(true);
+    });
   });
 });

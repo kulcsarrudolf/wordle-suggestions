@@ -29,23 +29,23 @@ const PlacedLetters: React.FC<PlacedLettersProps> = ({
     const a: Array<any> = [];
 
     if (placedLetters.get('FIRST_LETTER') !== '') {
-      a.push([placedLetters.get('FIRST_LETTER'), 1]);
+      a.push([1, placedLetters.get('FIRST_LETTER')]);
     }
 
     if (placedLetters.get('SECOND_LETTER') !== '') {
-      a.push([placedLetters.get('SECOND_LETTER'), 2]);
+      a.push([2, placedLetters.get('SECOND_LETTER')]);
     }
 
     if (placedLetters.get('THIRD_LETTER') !== '') {
-      a.push([placedLetters.get('THIRD_LETTER'), 3]);
+      a.push([3, placedLetters.get('THIRD_LETTER')]);
     }
 
     if (placedLetters.get('FOURTH_LETTER') !== '') {
-      a.push([placedLetters.get('FOURTH_LETTER'), 4]);
+      a.push([4, placedLetters.get('FOURTH_LETTER')]);
     }
 
     if (placedLetters.get('FIFTH_LETTER') !== '') {
-      a.push([placedLetters.get('FIFTH_LETTER'), 5]);
+      a.push([5, placedLetters.get('FIFTH_LETTER')]);
     }
 
     setPlacedLettersArray(a);

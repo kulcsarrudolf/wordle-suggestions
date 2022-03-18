@@ -1,3 +1,4 @@
+import WordleWord from './WordleWord';
 import { getAllNLetterWords } from './words';
 
 /**
@@ -41,11 +42,11 @@ const isTheWordStillInGame = (word, goodLetters, badLetters, placedLetters, yell
     }
   });
 
-  Array.from(placedLetters.keys()).forEach((letter) => {
-    if (!isTheLetterOnThePositon(word, letter, placedLetters.get(letter))) {
-      result = false;
-    }
-  });
+  const currentWord = new WordleWord(word);
+
+  if (!currentWord.doesContainAllThePlacedLetters(placedLetters)) {
+    result = false;
+  }
 
   Array.from(yellowLetters.keys()).forEach((letter) => {
     if (isTheLetterOnThePositon(word, letter, yellowLetters.get(letter))) {

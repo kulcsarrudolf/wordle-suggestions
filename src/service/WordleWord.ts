@@ -9,17 +9,11 @@ class WordleWord {
   }
 
   doesContainAllThePlacedLetters = (placedLetters: any): boolean => {
-    let result: boolean = true;
     const placedLettersPosition: Array<number> = Array.from(placedLetters.keys());
 
-    placedLettersPosition.forEach((letterPosition: number) => {
-      if (isTheLetterOnThePositon(this.word, placedLetters.get(letterPosition), letterPosition)) {
-        return;
-      }
-      result = false;
-    });
-
-    return result;
+    return placedLettersPosition.every((letterPosition: number) =>
+      isTheLetterOnThePositon(this.word, placedLetters.get(letterPosition), letterPosition)
+    );
   };
 }
 
