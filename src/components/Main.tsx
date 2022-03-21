@@ -16,7 +16,7 @@ const Main = () => {
   const [suggestions, setSuggestions] = useState<Array<string>>([]);
 
   useEffect(() => {
-    setSuggestions(getWordleSuggestions(goodLetters, badLetters, placedLetters, []));
+    setSuggestions(getWordleSuggestions(goodLetters, badLetters, placedLetters, new Map([])));
   }, [goodLetters, badLetters, placedLetters]);
 
   return (
@@ -46,7 +46,7 @@ const Main = () => {
 
         <Letters title="Bad Letters" letters={badLetters} setLetters={setBadLetters} />
 
-        <PlacedLetters setPlacedLettersArray={setPlacedLetters} />
+        <PlacedLetters setPlacedLetters={setPlacedLetters} />
 
         <Suggestions
           suggestions={suggestions}

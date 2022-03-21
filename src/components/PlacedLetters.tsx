@@ -3,53 +3,37 @@ import { Typography, TextField, Grid } from '@mui/material';
 import { v4 as getKey } from 'uuid';
 
 type PlacedLettersProps = {
-  setPlacedLettersArray: any;
+  setPlacedLetters: any;
 };
 
-const PlacedLetters: React.FC<PlacedLettersProps> = ({
-  setPlacedLettersArray,
-}: PlacedLettersProps) => {
-  const [placedLetters, setPlacedLetters] = useState<any>(
+const PlacedLetters: React.FC<PlacedLettersProps> = ({ setPlacedLetters }: PlacedLettersProps) => {
+  const [placedLettersInputValues, setPlacedLettersInputValues] = useState<any>(
     new Map([
-      ['FIRST_LETTER', ''],
-      ['SECOND_LETTER', ''],
-      ['THIRD_LETTER', ''],
-      ['FOURTH_LETTER', ''],
-      ['FIFTH_LETTER', ''],
+      [1, ''],
+      [2, ''],
+      [3, ''],
+      [4, ''],
+      [5, ''],
     ])
   );
 
   const onPlacedLettersChange = (key: string, value: string) => {
-    const placedLettersCopy = placedLetters;
+    const placedLettersCopy = placedLettersInputValues;
     placedLettersCopy.set(key, value);
-    setPlacedLetters(new Map(placedLettersCopy));
+    setPlacedLettersInputValues(new Map(placedLettersCopy));
   };
 
   useEffect(() => {
-    const a: Array<any> = [];
+    const currentPlacedLettersArray: Array<any> = [];
 
-    if (placedLetters.get('FIRST_LETTER') !== '') {
-      a.push([1, placedLetters.get('FIRST_LETTER')]);
-    }
+    Array.from(placedLettersInputValues.keys()).forEach((key: any) => {
+      if (placedLettersInputValues.get(key) !== '') {
+        currentPlacedLettersArray.push([key, placedLettersInputValues.get(key)]);
+      }
+    });
 
-    if (placedLetters.get('SECOND_LETTER') !== '') {
-      a.push([2, placedLetters.get('SECOND_LETTER')]);
-    }
-
-    if (placedLetters.get('THIRD_LETTER') !== '') {
-      a.push([3, placedLetters.get('THIRD_LETTER')]);
-    }
-
-    if (placedLetters.get('FOURTH_LETTER') !== '') {
-      a.push([4, placedLetters.get('FOURTH_LETTER')]);
-    }
-
-    if (placedLetters.get('FIFTH_LETTER') !== '') {
-      a.push([5, placedLetters.get('FIFTH_LETTER')]);
-    }
-
-    setPlacedLettersArray(a);
-  }, [placedLetters]);
+    setPlacedLetters(new Map(currentPlacedLettersArray));
+  }, [placedLettersInputValues]);
 
   return (
     <>
@@ -57,11 +41,11 @@ const PlacedLetters: React.FC<PlacedLettersProps> = ({
         <Typography>Placed Letters</Typography>
       </Grid>
       <Grid item>
-        {Array.from(placedLetters.keys()).map((key: any) => (
+        {Array.from(placedLettersInputValues.keys()).map((key: any) => (
           <TextField
             key={getKey()}
             variant="outlined"
-            value={placedLetters.get(key)}
+            value={placedLettersInputValues.get(key)}
             inputProps={{
               min: 0,
               style: { textAlign: 'center', textTransform: 'uppercase', padding: '0.45rem' },
