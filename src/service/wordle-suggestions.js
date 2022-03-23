@@ -51,3 +51,5 @@ const isTheWordStillInGame = (word, goodLetters, badLetters, placedLetters, yell
 
 const isTheLetterOnThePositon = (word, letter, position) =>
   word.toUpperCase().charAt(position - 1) === letter;
+
+export default getWordleSuggestions;

@@ -1,0 +1,11 @@
+[*]
+end_of_line = lf
+
+[*.{tsx}]
+end_of_line = lf
+
+[*.{js}]
+end_of_line = lf
+
+[*.{ts}]
+end_of_line = lf

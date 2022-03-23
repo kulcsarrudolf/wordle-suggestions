@@ -1,24 +1,39 @@
 {
-    "extends": ["airbnb-typescript", "prettier"],
-    "plugins": ["prettier"],
-    "parserOptions": {
-        "project": "./tsconfig.json"
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "jest": true
     },
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "airbnb",
+      "airbnb-typescript",
+      "plugin:import/typescript",
+      "plugin:react/jsx-runtime",
+      "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "project": "./tsconfig.json"
+    },
+    "plugins": ["react", "@typescript-eslint", "prettier"],
     "rules": {
-        "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/space-infix-ops": "off",
-        "object-curly-newline": ["off"],
-        "@typescript-eslint/object-curly-spacing": "off",
-        "@typescript-eslint/comma-dangle": ["off"],
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": "off",
-        "import/prefer-default-export": "off",
-        "react/jsx-one-expression-per-line": "off",
-        "operator-linebreak": "off",
-        "react/no-unescaped-entities": "warn",
-        "@typescript-eslint/no-unused-vars": "warn",
-        "no-restricted-globals": "off",
-        "no-console": ["warn", { "allow": ["error"] }],
-        "import/no-extraneous-dependencies": "warn"
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": ["off"],
+      "react-hooks/exhaustive-deps": "off",
+      "react/jsx-no-useless-fragment": "off",
+      "react/function-component-definition": [
+        0,
+        {
+          "namedComponents": "function-declaration"
+        }
+      ]
     }
-}
+  }
+  

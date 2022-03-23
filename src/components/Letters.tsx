@@ -18,16 +18,14 @@ const Letters: React.FC<LettersProps> = ({ title, letters, setLetters }: Letters
   };
 
   return (
-    <>
-      <Grid item>
-        <TextField
-          label={title}
-          variant="outlined"
-          value={letters.join('')}
-          onChange={onLettersChange}
-        />
-      </Grid>
-    </>
+    <Grid item>
+      <TextField
+        label={title}
+        variant="outlined"
+        value={letters.join('')}
+        onChange={onLettersChange}
+      />
+    </Grid>
   );
 };
 
