@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Typography, Button, Grid } from '@mui/material';
-import { getARandomWordForStart } from '../service/words';
+import { getAdvancedWordleSuggestion } from '../service/wordle-advanced-suggestions';
 
 type AdvancedSuggestionProps = {
-  isDisplayed: boolean;
+  filter: any;
 };
 
 const AdvancedSuggestion: React.FC<AdvancedSuggestionProps> = ({
-  isDisplayed,
+  filter,
 }: AdvancedSuggestionProps) => {
-  const [randomSuggestion, setRandomSuggestion] = useState<String>(getARandomWordForStart());
-
-  if (!isDisplayed) return <></>;
+  const [randomSuggestion, setRandomSuggestion] = useState<String>(
+    getAdvancedWordleSuggestion([], [], new Map([]), new Map([]))
+  );
 
   return (
     <>
@@ -19,7 +19,14 @@ const AdvancedSuggestion: React.FC<AdvancedSuggestionProps> = ({
         <Button
           variant="contained"
           onClick={() => {
-            setRandomSuggestion(getARandomWordForStart());
+            setRandomSuggestion(
+              getAdvancedWordleSuggestion(
+                filter.goodLetters,
+                filter.badLetters,
+                filter.placedLetters,
+                filter.yellowLetters
+              )
+            );
           }}
         >
           Get a suggestion

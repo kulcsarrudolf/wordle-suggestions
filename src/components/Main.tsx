@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Alert, Grid, Typography } from '@mui/material';
 
 import Warning from './Warning';
@@ -6,18 +6,10 @@ import Letters from './Letters';
 import PlacedLetters from './PlacedLetters';
 import Suggestions from './Suggestions';
 
-import { getWordleSuggestions } from '../service/wordle-suggestions';
-
 const Main = () => {
   const [goodLetters, setGoodLetters] = useState<Array<string>>([]);
   const [badLetters, setBadLetters] = useState<Array<string>>([]);
-  const [placedLetters, setPlacedLetters] = useState<any>([]);
-
-  const [suggestions, setSuggestions] = useState<Array<string>>([]);
-
-  useEffect(() => {
-    setSuggestions(getWordleSuggestions(goodLetters, badLetters, placedLetters, new Map([])));
-  }, [goodLetters, badLetters, placedLetters]);
+  const [placedLetters, setPlacedLetters] = useState<any>(new Map([]));
 
   return (
     <>
@@ -49,8 +41,7 @@ const Main = () => {
         <PlacedLetters setPlacedLetters={setPlacedLetters} />
 
         <Suggestions
-          suggestions={suggestions}
-          isDisplayed={goodLetters.length > 0 || badLetters.length > 0}
+          filter={{ goodLetters, badLetters, placedLetters, yellowLetters: new Map([]) }}
         />
       </Grid>
     </>

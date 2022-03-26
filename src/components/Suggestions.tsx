@@ -1,28 +1,28 @@
+import { useState, useEffect } from 'react';
 import { Grid, Chip, Typography, Alert } from '@mui/material';
 
 import { v4 as getKey } from 'uuid';
 
 import AdvancedSuggestion from './AdvancedSuggestion';
+import { getWordleSuggestions } from '../service/wordle-suggestions';
 
 type SuggestionsProps = {
-  suggestions: Array<string>;
-  isDisplayed: boolean;
+  filter: any;
 };
 
-const Suggestions: React.FC<SuggestionsProps> = ({
-  suggestions,
-  isDisplayed,
-}: SuggestionsProps) => {
-  if (!isDisplayed) {
-    return (
-      <>
-        <AdvancedSuggestion isDisplayed />
-      </>
-    );
-  }
+const Suggestions: React.FC<SuggestionsProps> = ({ filter }: SuggestionsProps) => {
+  const [suggestions, setSuggestions] = useState<Array<string>>([]);
+
+  const { goodLetters, badLetters, placedLetters, yellowLetters } = filter;
+
+  useEffect(() => {
+    setSuggestions(getWordleSuggestions(goodLetters, badLetters, placedLetters, yellowLetters));
+  }, [filter]);
 
   return (
     <>
+      <AdvancedSuggestion filter={filter} />
+
       <Grid item>
         <Typography>{`Results found: ${suggestions.length}`}</Typography>
       </Grid>
