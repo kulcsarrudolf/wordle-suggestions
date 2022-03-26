@@ -23,23 +23,3 @@ test('letters frequency', () => {
   expect(lettersFrequencyMap.get('N')).toBe(1);
   expect(lettersFrequencyMap.get('O')).toBe(1);
 });
-
-test('test', () => {
-  const suggestions = getWordleSuggestions(
-    ['E', 'U', 'R'],
-    ['I', 'D', 'A', 'L', 'N', 'O', 'T', 'S', 'B', 'Y', 'C', 'V'],
-    new Map([
-      [2, 'U'],
-      [3, 'R'],
-      [5, 'E'],
-    ]),
-    new Map([
-      [3, 'E'],
-      [4, 'E'],
-      [4, 'R'],
-    ])
-  );
-
-  //   console.log(getAWordForStart(suggestions));
-  console.log(getAdvancedSuggestions(suggestions));
-});
