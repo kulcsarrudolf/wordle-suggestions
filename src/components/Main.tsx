@@ -5,11 +5,13 @@ import Warning from './Warning';
 import Letters from './Letters';
 import PlacedLetters from './PlacedLetters';
 import Suggestions from './Suggestions';
+import YellowLetters from './YellowLetters';
 
 const Main = () => {
   const [goodLetters, setGoodLetters] = useState<Array<string>>([]);
   const [badLetters, setBadLetters] = useState<Array<string>>([]);
   const [placedLetters, setPlacedLetters] = useState<any>(new Map([]));
+  const [yellowLetters, setYellowLetters] = useState<any>(new Map([]));
 
   return (
     <>
@@ -38,11 +40,11 @@ const Main = () => {
 
         <Letters title="Bad Letters" letters={badLetters} setLetters={setBadLetters} />
 
+        <YellowLetters setYellowLetters={setYellowLetters} />
+
         <PlacedLetters setPlacedLetters={setPlacedLetters} />
 
-        <Suggestions
-          filter={{ goodLetters, badLetters, placedLetters, yellowLetters: new Map([]) }}
-        />
+        <Suggestions filter={{ goodLetters, badLetters, placedLetters, yellowLetters }} />
       </Grid>
     </>
   );

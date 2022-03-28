@@ -1,4 +1,5 @@
 import { TextField, Grid } from '@mui/material';
+import { lettersToArray } from '../utils';
 
 type LettersProps = {
   title: string;
@@ -7,12 +8,6 @@ type LettersProps = {
 };
 
 const Letters: React.FC<LettersProps> = ({ title, letters, setLetters }: LettersProps) => {
-  const lettersToArray = (lettersString: string) => {
-    let x = Array.from(lettersString);
-    x = x.map((letter) => letter.toUpperCase());
-    return [...new Set(x)];
-  };
-
   const onLettersChange = (e: any) => {
     setLetters(lettersToArray(e.target.value));
   };
