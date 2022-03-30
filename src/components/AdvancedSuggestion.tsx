@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Typography, Button, Grid } from '@mui/material';
 import { getAdvancedWordleSuggestion } from '../service/wordle-advanced-suggestions';
 
@@ -10,6 +10,10 @@ const AdvancedSuggestion: React.FC<AdvancedSuggestionProps> = ({
   suggestions,
 }: AdvancedSuggestionProps) => {
   const [randomSuggestion, setRandomSuggestion] = useState<String>('');
+
+  useEffect(() => {
+    setRandomSuggestion('');
+  }, [suggestions]);
 
   return (
     <>
