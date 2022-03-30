@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -53,9 +52,15 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-export default function CustomizedDialogs() {
-  const [open, setOpen] = useState(true);
+type CustomizedDialogsProps = {
+  open: boolean;
+  setOpen: any;
+};
 
+const CustomizedDialogs: React.FC<CustomizedDialogsProps> = ({
+  open,
+  setOpen,
+}: CustomizedDialogsProps) => {
   const handleClose = () => {
     setOpen(false);
   };
@@ -89,4 +94,6 @@ export default function CustomizedDialogs() {
       </BootstrapDialog>
     </>
   );
-}
+};
+
+export default CustomizedDialogs;
