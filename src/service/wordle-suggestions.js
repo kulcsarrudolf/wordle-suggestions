@@ -40,6 +40,10 @@ const isTheWordStillInGame = (word, goodLetters, badLetters, placedLetters, yell
     result = false;
   }
 
+  if (!currentWord.doesYellowLettersKeepInGame(yellowLetters)) {
+    result = false;
+  }
+
   return result;
 };
 

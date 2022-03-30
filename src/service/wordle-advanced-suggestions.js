@@ -63,8 +63,8 @@ export const getAWordForStart = (filteredWords) => {
 export const getAdvancedWordleSuggestion = (filteredWords) => {
   // const filteredWords = getWordleSuggestions(goodLetters, badLetters, placedLetters, yellowLetters);
 
-  if (filteredWords.length > 0) {
-    return getAWordForStart(filteredWords);
+  if (filteredWords.length === 0) {
+    return getAWordForStart(['trace']);
   }
 
   const results = getAdvancedSuggestions(filteredWords);

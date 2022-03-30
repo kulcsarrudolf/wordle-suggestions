@@ -5,7 +5,7 @@ class WordleWord {
   word: string;
 
   constructor(word: string) {
-    this.word = word;
+    this.word = word.toUpperCase();
   }
 
   doesContainAllThePlacedLetters = (placedLetters: any): boolean => {
@@ -14,6 +14,20 @@ class WordleWord {
     return placedLettersPosition.every((letterPosition: number) =>
       isTheLetterOnThePositon(this.word, placedLetters.get(letterPosition), letterPosition)
     );
+  };
+
+  doesYellowLettersKeepInGame = (yellowLetters: any): boolean => {
+    const results: Array<boolean> = [];
+
+    Array.from(yellowLetters.keys()).forEach((key: any) => {
+      const letters = yellowLetters.get(key);
+
+      results.push(
+        letters.every((letter: string) => !isTheLetterOnThePositon(this.word, letter, key))
+      );
+    });
+
+    return results.every((result: boolean) => result === true);
   };
 }
 

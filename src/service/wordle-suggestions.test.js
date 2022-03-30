@@ -15,3 +15,20 @@ test('Placed Letters Test - When a letter is repeating', () => {
   expect(suggestions.length).toBe(1);
   expect(suggestions[0]).toBe('sissy');
 });
+
+test('Yellow Letters Test - When no letters defined for the last place', () => {
+  const suggestions = getWordleSuggestions(
+    ['O', 'D'],
+    ['T', 'R', 'A', 'C', 'E', 'G', 'L', 'S'],
+    new Map([[2, 'O']]),
+    new Map([
+      [1, []],
+      [2, []],
+      [3, []],
+      [4, ['D']],
+      [5, []],
+    ])
+  );
+
+  expect(suggestions.length).toBe(12);
+});
