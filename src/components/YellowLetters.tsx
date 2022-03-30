@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { v4 as getKey } from 'uuid';
+
 import { Checkbox, FormControlLabel, FormGroup, Grid, TextField } from '@mui/material';
 
 import { getSuffixForNumber, lettersToArray } from '../utils';
@@ -30,7 +32,7 @@ const YellowLetters: React.FC<YellowLettersProps> = ({ setYellowLetters }: Yello
 
   useEffect(() => {
     setYellowLetters(yellowLettersInputValues);
-  }, yellowLettersInputValues);
+  }, [yellowLettersInputValues]);
 
   return (
     <Grid item>
@@ -58,7 +60,7 @@ const YellowLetters: React.FC<YellowLettersProps> = ({ setYellowLetters }: Yello
         >
           {Array.from(yellowLettersInputValues.keys()).map((key: any) => {
             return (
-              <Grid item>
+              <Grid item key={getKey()}>
                 <TextField
                   label={`${getSuffixForNumber(key)} place`}
                   value={yellowLettersInputValues.get(key).join('')}

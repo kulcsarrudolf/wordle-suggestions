@@ -40,16 +40,7 @@ const isTheWordStillInGame = (word, goodLetters, badLetters, placedLetters, yell
     result = false;
   }
 
-  Array.from(yellowLetters.keys()).forEach((letter) => {
-    if (isTheLetterOnThePositon(word, letter, yellowLetters.get(letter))) {
-      result = false;
-    }
-  });
-
   return result;
 };
-
-const isTheLetterOnThePositon = (word, letter, position) =>
-  word.toUpperCase().charAt(position - 1) === letter;
 
 export default getWordleSuggestions;

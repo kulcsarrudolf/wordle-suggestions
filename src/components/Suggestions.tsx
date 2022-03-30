@@ -1,27 +1,17 @@
-import { useState, useEffect } from 'react';
 import { Grid, Chip, Typography, Alert } from '@mui/material';
 
 import { v4 as getKey } from 'uuid';
 
 import AdvancedSuggestion from './AdvancedSuggestion';
-import { getWordleSuggestions } from '../service/wordle-suggestions';
 
 type SuggestionsProps = {
-  filter: any;
+  suggestions: any;
 };
 
-const Suggestions: React.FC<SuggestionsProps> = ({ filter }: SuggestionsProps) => {
-  const [suggestions, setSuggestions] = useState<Array<string>>([]);
-
-  const { goodLetters, badLetters, placedLetters, yellowLetters } = filter;
-
-  useEffect(() => {
-    setSuggestions(getWordleSuggestions(goodLetters, badLetters, placedLetters, yellowLetters));
-  }, [filter]);
-
+const Suggestions: React.FC<SuggestionsProps> = ({ suggestions }: SuggestionsProps) => {
   return (
     <>
-      <AdvancedSuggestion filter={filter} />
+      <AdvancedSuggestion suggestions={suggestions} />
 
       <Grid item>
         <Typography>{`Results found: ${suggestions.length}`}</Typography>
@@ -38,7 +28,7 @@ const Suggestions: React.FC<SuggestionsProps> = ({ filter }: SuggestionsProps) =
       </>
       {suggestions.length < 1000 && (
         <Grid item>
-          {suggestions.map((word) => (
+          {suggestions.map((word: string) => (
             <Chip
               key={getKey()}
               variant="filled"

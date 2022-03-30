@@ -1,5 +1,3 @@
-import { getWordleSuggestions } from './wordle-suggestions';
-
 export const getLettersFrequency = (filtredWords) => {
   const lettersFrequency = new Map();
 
@@ -62,15 +60,10 @@ export const getAWordForStart = (filteredWords) => {
  * @returns the suggested word
  */
 
-export const getAdvancedWordleSuggestion = (
-  goodLetters,
-  badLetters,
-  placedLetters,
-  yellowLetters
-) => {
-  const filteredWords = getWordleSuggestions(goodLetters, badLetters, placedLetters, yellowLetters);
+export const getAdvancedWordleSuggestion = (filteredWords) => {
+  // const filteredWords = getWordleSuggestions(goodLetters, badLetters, placedLetters, yellowLetters);
 
-  if (goodLetters.length === 0 && badLetters.length === 0) {
+  if (filteredWords.length > 0) {
     return getAWordForStart(filteredWords);
   }
 

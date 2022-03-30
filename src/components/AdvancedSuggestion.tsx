@@ -3,15 +3,13 @@ import { Typography, Button, Grid } from '@mui/material';
 import { getAdvancedWordleSuggestion } from '../service/wordle-advanced-suggestions';
 
 type AdvancedSuggestionProps = {
-  filter: any;
+  suggestions: any;
 };
 
 const AdvancedSuggestion: React.FC<AdvancedSuggestionProps> = ({
-  filter,
+  suggestions,
 }: AdvancedSuggestionProps) => {
-  const [randomSuggestion, setRandomSuggestion] = useState<String>(
-    getAdvancedWordleSuggestion([], [], new Map([]), new Map([]))
-  );
+  const [randomSuggestion, setRandomSuggestion] = useState<String>('');
 
   return (
     <>
@@ -19,22 +17,17 @@ const AdvancedSuggestion: React.FC<AdvancedSuggestionProps> = ({
         <Button
           variant="contained"
           onClick={() => {
-            setRandomSuggestion(
-              getAdvancedWordleSuggestion(
-                filter.goodLetters,
-                filter.badLetters,
-                filter.placedLetters,
-                filter.yellowLetters
-              )
-            );
+            setRandomSuggestion(getAdvancedWordleSuggestion(suggestions));
           }}
         >
           Get a suggestion
         </Button>
       </Grid>
-      <Grid item>
-        <Typography>Suggestion: {randomSuggestion}</Typography>
-      </Grid>
+      {randomSuggestion.length > 0 && (
+        <Grid item>
+          <Typography>Suggestion: {randomSuggestion}</Typography>
+        </Grid>
+      )}
     </>
   );
 };
