@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/wordle-suggestions/static/js/main.2e29e818.js",
+    "main.js": "/wordle-suggestions/static/js/main.a3ae6fea.js",
     "static/js/787.419086ed.chunk.js": "/wordle-suggestions/static/js/787.419086ed.chunk.js",
     "index.html": "/wordle-suggestions/index.html",
-    "main.2e29e818.js.map": "/wordle-suggestions/static/js/main.2e29e818.js.map",
+    "main.a3ae6fea.js.map": "/wordle-suggestions/static/js/main.a3ae6fea.js.map",
     "787.419086ed.chunk.js.map": "/wordle-suggestions/static/js/787.419086ed.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.2e29e818.js"
+    "static/js/main.a3ae6fea.js"
   ]
 }
